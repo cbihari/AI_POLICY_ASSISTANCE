@@ -76,31 +76,73 @@ def chunk_text(text, size=3000):
 def extract_json_from_text(text):
 
     prompt = """
-You are an expert insurance ACORD extraction engine.
+You are an expert insurance ACORD 130 (Workers Compensation) extraction engine.
 
 Return STRICT valid JSON only.
-Do NOT add explanation.
 
 Schema:
 {
-  "agency_name": string | null,
-  "insured_name": string | null,
-  "insured_address": {
-      "street": string | null,
-      "city": string | null,
-      "state": string | null,
-      "zip": string | null
+  "agency_information": {
+    "agency_name": string | null,
+    "agency_address": string | null,
+    "producer_name": string | null
   },
-  "policy_start_date": string | null,
-  "policy_end_date": string | null,
-  "state": string | null,
-  "liability_limit": string | null,
-  "class_code": string | null,
-  "business_description": string | null,
-  "general_information": string | null
+  "applicant_information": {
+    "applicant_name": string | null,
+    "entity_type": string | null,
+    "mailing_address": string | null,
+    "phone": string | null,
+    "email": string | null
+  },
+  "policy_information": {
+    "effective_date": string | null,
+    "expiration_date": string | null,
+    "state": string | null,
+    "financed": boolean | null
+  },
+  "limits": {
+    "each_accident": string | null,
+    "disease_policy_limit": string | null,
+    "disease_each_employee": string | null
+  },
+  "locations": [
+    {
+      "location_number": string | null,
+      "address": string | null
+    }
+  ],
+  "rating_information": [
+    {
+      "class_code": string | null,
+      "description": string | null,
+      "number_of_employees": string | null,
+      "estimated_payroll": string | null
+    }
+  ],
+  "owners_officers": [
+    {
+      "name": string | null,
+      "dob": string | null,
+      "title": string | null,
+      "ownership_percent": string | null,
+      "class_code": string | null,
+      "payroll": string | null
+    }
+  ],
+  "nature_of_business": string | null,
+  "general_information": {
+    "questions": [
+      {
+        "question_number": integer,
+        "answer": "Y" | "N" | null
+      }
+    ]
+  }
 }
+
 If value not found, return null.
 """
+
 
     response = client.chat.completions.create(
         model=MODEL_NAME,
