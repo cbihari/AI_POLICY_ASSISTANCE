@@ -1,0 +1,16 @@
+{
+    "agency_name": "PRP Insurance Group LLC",
+    "insured_name": "ABREGO CONTRACTOR LLC",
+    "insured_address": {
+        "street": "1329 FARRARA DRIVE",
+        "city": "ODENTON",
+        "state": "MD",
+        "zip": "21113"
+    },
+    "policy_start_date": "04/19/2024",
+    "policy_end_date": "04/19/2025",
+    "state": "MD",
+    "liability_limit": "1,000,000",
+    "class_code": "15645",
+    "business_description": "CARPENTRY/REMODELING INTERIOR."
+}
