@@ -38,6 +38,11 @@ app.add_middleware(
 # -----------------------------
 # Health Check Endpoint
 # -----------------------------
+
+@app.get("/")
+def root():
+    return {"message": "ACORD Extraction API is running"}
+
 @app.get("/health")
 def health():
     return {"status": "healthy"}
